@@ -1,0 +1,30 @@
+# Code adapted from: https://docs.github.com/en/actions/guides/building-and-testing-python
+
+name: run_script_check
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8, 3.9]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          sudo apt-get install libdbus-1-dev libdbus-glib-1-dev rofi
+          python3 -m pip install autokey
+          python3 -m pip install --upgrade pip
+          python3 -m pip install python-rofi
+          python3 -m pip install python-networkmanager
+      - name: run_script
+        run: |
+          python3 rofi_menu.py
