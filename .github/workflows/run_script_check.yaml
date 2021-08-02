@@ -20,6 +20,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
+          sudo apt-get install libdbus-1-dev libdbus-glib-1-dev
+          python3 -m pip install autokey
           python3 -m pip install --upgrade pip
           python3 -m pip install python-rofi
           python3 -m pip install python-networkmanager
