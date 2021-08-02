@@ -9,4 +9,4 @@ def quickOptionsTest():
 
 if __name__ == '__main__':
     index, key = quickOptionsTest()
-    print("index: " + str(index) + "\n" + "key: " + str(key))
+    pint("index: " + str(index) + "\n" + "key: " + str(key))
