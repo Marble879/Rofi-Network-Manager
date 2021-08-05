@@ -45,6 +45,8 @@ def connect_to_wifi(wifi_list_index, wifi_list):
                 if type(e) == subprocess.CalledProcessError:
                     os.system("notify-send \"Error: Incorrect Password\"")
                     check_to_loop = True
+                elif type(e) == TypeError:
+                    exit()
                 template = "An exception of type {0} occurred. Arguments:\n{1!r}"
                 message = template.format(type(e).__name__, e.args)
                 print(message)
