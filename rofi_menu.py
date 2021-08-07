@@ -29,14 +29,18 @@ def connect_to_wifi(wifi_list_index, wifi_list):
     wifi_information = wifi_list[wifi_list_index]
     ssid_to_connect = cleanup_wifi_info_to_ssid(wifi_information)
 
-    connection_result = subprocess.check_output(['nmcli', 'device', 'wifi', 'connect', ssid_to_connect]).decode(
-        "utf-8").strip()
-    os.system("notify-send \"Connecting...\"")
+    try:
+        connection_result = subprocess.check_output(['nmcli', 'device', 'wifi', 'connect', ssid_to_connect]).decode(
+            "utf-8").strip()
+    except:
+        exit()
+
     if CONST_PASSWORD_NEEDED == connection_result:
         check_to_loop = True
         while check_to_loop:
             check_to_loop = False
             password = enter_password()
+            os.system("notify-send \"Connecting...\"")
             try:
                 connection_result = subprocess.check_output(
                     ['nmcli', 'device', 'wifi', 'connect', ssid_to_connect, 'password', password])
