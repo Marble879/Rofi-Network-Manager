@@ -9,11 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-<<<<<<< HEAD
         python-version: [3.7, 3.8, 3.9, "3.10", 3.11]
-=======
-        python-version: [3.7, 3.8, 3.9, 3.10, 3.11]
->>>>>>> 4dd1441 (Update run_script_check.yaml)
 
     steps:
       - uses: actions/checkout@v2
